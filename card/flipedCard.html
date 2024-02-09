@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card</title>
+    <style>
+        /* A .card osztály a kártya konténerét jelöli meg. */
+        .card {
+            /* A perspektíva tulajdonság beállítja a 3D megjelenítés mélységét az elemen belül. */
+            perspective: 150rem;
+            /* A relatív elhelyezés a gyerekelemek pozícionálásához a szülőelemhez viszonyítva. */
+            position: relative;
+            /* A kártya magassága. */
+            height: 40rem;
+            /* A kártya maximális szélessége. */
+            max-width: 400px;
+            /* A margó beállítása az elem körül. */
+            margin: 2rem;
+            /* A doboz árnyékának kikapcsolása. */
+            box-shadow: none;
+            /* A háttér beállítása átlátszóra. */
+            background: none;
+            /* Az egérkurzor stílusának beállítása mutatóra, hogy jelezze az interaktivitást. */
+            cursor: pointer;
+        }
+
+        /* Az első oldal (front) stílusának beállítása. */
+        .card-side {
+            /* A szélesség és a magasság 100%-ra állítása. */
+            width: 100%;
+            height: 100%;
+            /* Abszolút pozícionálás, hogy a kártya megfelelően megjelenjen. */
+            position: absolute;
+            /* A hátlap elrejtése, amikor az első oldal látható. */
+            backface-visibility: hidden;
+            /* A transzformáció animációja 0.8 másodperc. */
+            transition: transform 0.8s;
+            /* A transzformáció stílusa 3D-ben. */
+            transform-style: preserve-3d;
+        }
+
+        /* Az első oldal (front) stílusának beállítása. */
+        .card-side.front {
+            /* A kártya elforgatása 0 fokos szögben. */
+            transform: rotateY(0deg);
+            /* A háttérszín beállítása. */
+            background-color: #f0f0f0;
+        }
+
+        /* A második oldal (back) stílusának beállítása. */
+        .card-side.back {
+            /* A kártya elforgatása 180 fokos szögben. */
+            transform: rotateY(180deg);
+            /* A háttérszín beállítása. */
+            background-color: #e0e0e0;
+        }
+
+        /* A kártyatartalom középre igazítása. */
+        .card-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        /* A kártyatartalom szövegek formázása. */
+        .card-content h3 {
+            margin: 0;
+        }
+
+        /* Az elforgatott kártya stílusa. */
+        .is-flipped .card-side.front {
+            /* Az első oldal (front) elforgatása -180 fokos szögben. */
+            transform: rotateY(-180deg);
+        }
+
+        /* Az elforgatott kártya stílusa. */
+        .is-flipped .card-side.back {
+            /* A hátsó oldal (back) elforgatása 0 fokos szögben. */
+            transform: rotateY(0deg);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- A kártya konténerének létrehozása. -->
+    <div class="card" id="card">
+        <!-- Az első oldal (front) tartalma. -->
+        <div class="card-side front">
+            <!-- A kártya tartalmának középre igazítása. -->
+            <div class="card-content">
+                <!-- A kártya első oldalának szövege. -->
+                <h3>Front Side</h3>
+            </div>
+        </div>
+        <!-- A második oldal (back) tartalma. -->
+        <div class="card-side back">
+            <!-- A kártya tartalmának középre igazítása. -->
+            <div class="card-content">
+                <!-- A kártya második oldalának szövege. -->
+                <h3>Back Side</h3>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript
+        // A kártya elem kiválasztása az azonosító alapján.
+        const card = document.getElementById('card');
+
+        // Eseménykezelő hozzáadása a kártyához, amely akkor fut le, ha a kártyára kattintanak.
+        card.addEventListener('click', function () {
+            // Az 'is-flipped' osztály hozzáadása vagy eltávolítása a kártya elemhez a kattintásra.
+            this.classList.toggle('is-flipped');
+        });
+    </script>
+</body>
+
+</html>
